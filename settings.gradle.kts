@@ -1,1 +1,1 @@
-rootProject.name = "budged-roots-user-service"
+rootProject.name = "budget-roots-account-service"

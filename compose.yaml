@@ -1,3 +1,5 @@
+
+
 services:
   keycloak-db:
     image: postgres:15
@@ -25,5 +27,18 @@ services:
     ports:
       - '9090:8080'
 
+  account-service-db:
+    image: postgres:15
+    container_name: account-service-db
+    environment:
+      POSTGRES_DB: account_service
+      POSTGRES_USER: account_service
+      POSTGRES_PASSWORD: account_service_pass
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'account-service-db-data:/var/lib/postgresql/data'
+
 volumes:
   keycloak-db-data:
+  account-service-db-data:
