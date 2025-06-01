@@ -28,7 +28,7 @@ class GlobalExceptionHandler {
     private fun userServiceExceptionHandler(ex: AccountServiceException): ResponseEntity<ProblemDetail> {
         log
             .atLevel(ex.logLevel)
-            .setMessage { ex.message }
+            .setMessage(ex.message)
             .setCause(ex.throwable)
             .log()
         return ResponseEntity

@@ -4,4 +4,6 @@ import de.budgetroots.accountservice.adapter.output.persistance.entity.AccountEn
 
 interface AccountPersistencePort {
     fun saveUser(entity: AccountEntity): AccountEntity
+
+    fun findByKeycloakId(keycloakId: String): AccountEntity?
 }

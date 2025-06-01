@@ -17,7 +17,7 @@ class SecurityConfig {
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authorizeHttpRequests {
                 it
-                    .requestMatchers("/api/register")
+                    .requestMatchers("/api/v1/account/register")
                     .permitAll()
                     .anyRequest()
                     .authenticated()

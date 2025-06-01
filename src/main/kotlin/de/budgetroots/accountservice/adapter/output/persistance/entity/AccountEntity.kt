@@ -19,7 +19,7 @@ data class AccountEntity(
 
 fun AccountEntity.toAccount(): Account =
     Account(
-        id = keycloakId,
+        keycloakId = keycloakId,
         email = email,
         firstName = firstName,
         lastName = lastName,
