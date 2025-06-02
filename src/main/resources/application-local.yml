@@ -16,3 +16,5 @@ budget-roots:
     realm: budget-roots
     admin-username: admin
     admin-password: admin
+    client-id: account-service
+    client-secret: uM0vTaFhiK6XgFPf7B1EzEg3au9e1QCs

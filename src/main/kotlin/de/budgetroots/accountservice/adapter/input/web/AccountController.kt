@@ -1,10 +1,8 @@
 package de.budgetroots.accountservice.adapter.input.web
 
-import de.budgetroots.accountservice.adapter.input.web.dto.AccountDetails
-import de.budgetroots.accountservice.adapter.input.web.dto.RegisterAccountRequest
-import de.budgetroots.accountservice.adapter.input.web.dto.toAccountDetails
-import de.budgetroots.accountservice.adapter.input.web.dto.toCommand
+import de.budgetroots.accountservice.adapter.input.web.dto.*
 import de.budgetroots.accountservice.domain.port.input.AccountDetailsUseCase
+import de.budgetroots.accountservice.domain.port.input.AccountLoginUseCase
 import de.budgetroots.accountservice.domain.port.input.AccountRegistrationUseCase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.*
 class AccountController(
     private val accountRegistrationUseCase: AccountRegistrationUseCase,
     private val accountDetailsUseCase: AccountDetailsUseCase,
+    private val accountLoginUseCase: AccountLoginUseCase,
 ) {
     @PostMapping("/register")
     fun register(
@@ -22,6 +21,11 @@ class AccountController(
         accountRegistrationUseCase.registerUser(registerAccountRequest.toCommand())
         return ResponseEntity.ok("User registered successfully")
     }
+
+    @PostMapping("/login")
+    fun login(
+        @RequestBody loginAccountRequest: LoginAccountRequest,
+    ): ResponseEntity<LoginAccountResponse> = ResponseEntity.ok(accountLoginUseCase.login(loginAccountRequest.toCommand()).toResponse())
 
     @GetMapping("/{keycloakId}")
     fun getAccountDetails(
