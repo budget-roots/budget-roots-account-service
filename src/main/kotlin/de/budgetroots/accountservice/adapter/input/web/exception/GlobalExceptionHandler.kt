@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 class GlobalExceptionHandler {
     private val log = LoggerFactory.getLogger(javaClass)
 
-    @ExceptionHandler(Throwable::class)
-    private fun defaultExceptionHandler(ex: Throwable): ResponseEntity<ProblemDetail> {
+    @ExceptionHandler(Exception::class)
+    fun defaultExceptionHandler(ex: Exception): ResponseEntity<ProblemDetail> {
         log.error("An unexpected error occurred", ex)
         return ResponseEntity.internalServerError().body(
             ProblemDetail
@@ -25,7 +25,7 @@ class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(AccountServiceException::class)
-    private fun userServiceExceptionHandler(ex: AccountServiceException): ResponseEntity<ProblemDetail> {
+    fun userServiceExceptionHandler(ex: AccountServiceException): ResponseEntity<ProblemDetail> {
         log
             .atLevel(ex.logLevel)
             .setMessage(ex.message)
